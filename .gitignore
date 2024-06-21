@@ -1,0 +1,20 @@
+front_ui/node_modules
+front_ui/.pnp
+front_ui/.pnp.js
+
+# testing
+front_ui/coverage
+
+# production
+front_ui/build
+
+# misc
+front_ui/.DS_Store
+front_ui/.env.local
+front_ui/.env.development.local
+front_ui/.env.test.local
+front_ui/.env.production.local
+
+front_ui/npm-debug.log*
+front_ui/yarn-debug.log*
+front_ui/yarn-error.log*

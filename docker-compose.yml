@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  rabbitmq-se:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-se
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  
+  producer_pump:
+    build:
+      context: ./producer
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq-se
+    
+
+  consumer_pump:
+    build:
+      context: ./consumer
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq-se
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - rabbitmq-se
+
+  frontend:
+    build:
+      context: ./front_ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: always
+  
